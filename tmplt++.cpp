@@ -28,6 +28,7 @@ typedef unsigned long long ull;
 #define     bug1(s,a)               cerr << s << "      " << a << '\n';
 #define     bug2(s,a,b)             cerr << s << "      " << a << "     " << b << '\n';
 #define     bug3(s,a,b,c)           cerr << s << "      " << a << "     " << b << "     " << c <<'\n';
+#define     bug4(s,a,b,c,d)         cerr << s << "      " << a << "     " << b << "     " << c << "     " << d <<'\n';
 
 
 
