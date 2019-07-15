@@ -4,22 +4,12 @@ int grp[10000000];
 int par[10000000];
 void init(int n)
 {
-    int i;
-    for(i=0;i<n;i++)
-    {
-        par[i]=i;
-    }
+    for(int i=0;i<n;i++) par[i]=i;
 }
 int findr(int r)
 {
-    if(par[r]==r)
-    {
-        return r;
-    }
-    else
-    {
-        return par[r]=findr(par[r]);
-    }
+    if(par[r]==r) return r;
+    else return par[r]=findr(par[r]);
 }
 void dsu(int n,int m)
 {

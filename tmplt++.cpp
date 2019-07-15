@@ -15,9 +15,12 @@ typedef unsigned long long ull;
 #define     lop1(i,n)               for(int i=1;i<=n;i++)
 #define     lop0(i,n)               for(int i=0;i<n;i++)
 #define     lop(i,a,n)              for(int i=a;i<=n;i++)
-#define     sf(n)                   cin >> n;
-#define     sff(a,b)                cin >> a >> b;
-#define     sfff(a,b,c)             cin >> a >> b >> c;
+#define     sf1(n)                  cin >> n;
+#define     sf2(a,b)                cin >> a >> b;
+#define     sf3(a,b,c)              cin >> a >> b >> c;
+#define     sf(n)                   scanf("%d",&n)
+#define     sff(a,b)                scanf("%d %d",&a,&b)
+#define     sfff(a,b,c)             scanf("%d %d %d",&a,&b,&c)
 #define     sl(n)                   scanf("%lld",&n)
 #define     sll(a,b)                scanf("%lld %lld",&a,&b)
 #define     slll(a,b,c)             scanf("%lld %lld %lld",&a,&b,&c)
@@ -89,7 +92,6 @@ vector<int>vc;
 
 int main()
 {
-    FASTER
     int test;
     ll n,sum=0,m,ans=0,v,k;
     return 0;
