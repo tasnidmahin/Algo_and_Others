@@ -22,7 +22,7 @@ void  update(int in,int L,int  R,int pos, int u)
         sum[in] += u;
         return;
     }
-    int mid = L+R)/2;
+    int mid = (L+R)/2;
     if(pos<= mid) update(in*2, L, mid, pos, u);
     else update((in*2)+1, mid+1, R,      pos, u);
     sum[in]  =  sum[in*2] + sum[(in*2)+1];

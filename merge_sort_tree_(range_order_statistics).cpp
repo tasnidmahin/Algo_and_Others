@@ -12,8 +12,8 @@ typedef unsigned long long ull;
 
 #define     FASTER                  ios_base::sync_with_stdio(false); cin.tie(NULL); cout.tie(NULL);
 #define     OUT                     freopen("out.txt","w",stdout);
-#define     lop1(i,n)               for(int i=1;i<=n;i++)
-#define     lop0(i,n)               for(int i=0;i<n;i++)
+#define     lop1(i,n)               for(ll i=1;i<=n;i++)
+#define     lop0(i,n)               for(ll i=0;i<n;i++)
 #define     lop(i,a,n)              for(int i=a;i<=n;i++)
 #define     sf1(n)                  cin >> n;
 #define     sf2(a,b)                cin >> a >> b;
@@ -85,15 +85,63 @@ int Set(int n,int pos){ return n = n | (1<<pos);}
 int reset(int n, int pos){ return n = n & ~(1<<pos);}
 bool check(int n, int pos){ return (bool) (n & (1<<pos));}
 
-int ara[50000007];
-string s;
-char ch;
-map<int ,int> mp;
-vector<int>vc;
+ll ara[100005];
+vector<pll>vc;
+vector<ll>tre[400005];
+ll n,test;
+
+void build(ll node,ll L,ll R)
+{
+  if(L==R)
+  {
+    tre[node].push_back(vc[L].second);
+    return;
+  }
+
+  ll left = 2*node;
+  ll right = 2*node+1;
+
+  ll mid = (L+R)/2;
+  build(left,L,mid);
+  build(right,mid+1,R);
+  merge(all(tre[left]),all(tre[right]),back_inserter(tre[node]));
+}
+
+ll query_kth(ll node,ll L,ll R,ll l,ll r,ll k)
+{
+  if(L==R){
+    return tre[node][0];
+  }
+
+  ll mid = (L+R)/2;
+  ll left = 2*node;
+  ll right = 2*node+1;
+
+  ll tot = upper_bound(all(tre[left]),r) - lower_bound(all(tre[left]),l);
+
+  if(tot>=k) return query_kth(left,L,mid,l,r,k);
+  else return query_kth(right,mid+1,R,l,r,k-tot);
+}
 
 int main()
 {
-    int test;
-    ll n,sum=0,m,ans=0,v,k;
+    sll(n,test);
+    lop0(i,n)
+    {
+        sl(ara[i]);
+        vc.push_back({ara[i],i});
+    }
+    SORT(vc);
+    build(1,0,n-1);
+
+    lop1(t,test)
+    {
+        ll x,y,k;
+        slll(x,y,k);
+        x--;       y--;
+        ll ans = query_kth(1,0,n-1,x,y,k);
+        ans = ara[ans];
+        pl(ans);
+    }
     return 0;
 }

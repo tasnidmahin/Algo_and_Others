@@ -85,15 +85,82 @@ int Set(int n,int pos){ return n = n | (1<<pos);}
 int reset(int n, int pos){ return n = n & ~(1<<pos);}
 bool check(int n, int pos){ return (bool) (n & (1<<pos));}
 
-int ara[50000007];
-string s;
-char ch;
-map<int ,int> mp;
-vector<int>vc;
+#define N 311111
+#define A 1111111
 
-int main()
+int cnt[A], a[N], ans[N], answer = 0,n,BLOCK;
+
+void blocking(int n)
 {
-    int test;
-    ll n,sum=0,m,ans=0,v,k;
-    return 0;
+    BLOCK = sqrt(n+1);      return ;
+}
+
+
+struct node {
+	int L, R, i;
+}q[N];
+
+bool cmp(node x, node y) {
+	if(x.L/BLOCK != y.L/BLOCK) {
+		// different blocks, so sort by block.
+		return x.L/BLOCK < y.L/BLOCK;
+	}
+	// same block, so sort by R value
+	return x.R < y.R;
+}
+
+void add(int position) {
+	cnt[a[position]]++;
+	if(cnt[a[position]] == 1) {
+		answer++;
+	}
+}
+
+void remove(int position) {
+	cnt[a[position]]--;
+	if(cnt[a[position]] == 0) {
+		answer--;
+	}
+}
+
+int main() {
+	scanf("%d", &n);
+	blocking(n);
+	for(int i=0; i<n; i++)
+		scanf("%d", &a[i]);
+
+	int m;
+	scanf("%d", &m);
+	for(int i=0; i<m; i++) {
+		scanf("%d%d", &q[i].L, &q[i].R);
+		q[i].L--; q[i].R--;
+		q[i].i = i;
+	}
+
+	sort(q, q + m, cmp);
+
+	int currentL = 0, currentR = 0;
+	for(int i=0; i<m; i++) {
+		int L = q[i].L, R = q[i].R;
+		while(currentL < L) {
+			remove(currentL);
+			currentL++;
+		}
+		while(currentL > L) {
+			add(currentL-1);
+			currentL--;
+		}
+		while(currentR <= R) {
+			add(currentR);
+			currentR++;
+		}
+		while(currentR > R+1) {
+			remove(currentR-1);
+			currentR--;
+		}
+		ans[q[i].i] = answer;
+	}
+
+	for(int i=0; i<m; i++)
+		printf("%d\n", ans[i]);
 }

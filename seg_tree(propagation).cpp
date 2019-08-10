@@ -1,4 +1,4 @@
-Segment Tree(Propagation):
+//Segment Tree(Propagation):
 int toggle[30000007];
 int on[30000007];
 void build(int in,int L, int R)
