@@ -1,70 +1,50 @@
 //LCA using sparse table
 //Complexity: O(NlgN,lgN)
 #define mx 100002
-int L[mx]; //level
-int P[mx][22]; //sparse table
-int T[mx]; //parent
-vector<int>g[mx];
-void dfs(int from,int u,int dep)
+ll L[10004]; //level
+ll P[10004][22]; //sparse table
+vector<pll>g[10004];
+
+ll vis[10004];
+
+
+void dfs(ll from,ll u,ll dep,ll dis)
 {
-    T[u]=from;
+    P[u][0]=from;
     L[u]=dep;
-    for(int i=0;i<(int)g[u].size();i++)
+    vis[u] = dis;
+    for(ll i=0;i<g[u].size();i++)
     {
-        int v=g[u][i];
+        ll v=g[u][i].F;
         if(v==from) continue;
-        dfs(u,v,dep+1);
+        dfs(u,v,dep+1,dis+g[u][i].S);
     }
 }
 
-int lca_query(int N, int p, int q) //N=node number
+ll lcaQ(ll N, ll p, ll q) //N=node number
 {
-    int tmp, log, i;
     if (L[p] < L[q]) swap(p,q);
-
-    log=1;
-    while(1)
-    {
-        int next=log+1;
-        if((1<<next)>L[p])break;
-        log++;
-    }
-
-    for (i = log; i >= 0; i--)
-      if (L[p] - (1 << i) >= L[q])
+    for (ll i = 18; i >= 0; i--){      //lift p to the same level of q
+      if (L[p] - (1 << i) >= L[q]){
           p = P[p][i];
+      }
+    }
 
     if (p == q)return p;
 
-
-    for (i = log; i >= 0; i--)
-      if (P[p][i] != -1 && P[p][i] != P[q][i])
+    for (ll i = 18; i >= 0; i--){
+      if (P[p][i] != 0 && P[p][i] != P[q][i]){
           p = P[p][i], q = P[q][i];
+      }
+    }
 
-    return T[p];
+    return P[p][0];
 }
 
-void lca_init(int N)
+void lca_init(ll N)
 {
-      memset (P,-1,sizeof(P)); //at first all cells contains -1
-      int i, j;
-       for (i = 0; i < N; i++)
-          P[i][0] = T[i];
-
-      for (j = 1; 1 << j < N; j++)
-         for (i = 0; i < N; i++)
-             if (P[i][j - 1] != -1)
+      for (ll j = 1; 1 << j < N; j++) // make spars table
+         for (ll i = 0; i < N; i++)
                  P[i][j] = P[P[i][j - 1]][j - 1];
  }
 
-int main(void)
-{
-	g[0].pb(1);
-	g[0].pb(2);
-	g[2].pb(3);
-	g[2].pb(4);
-	dfs(-1, 0, 0);
-	lca_init(5);
-	printf( "%d\n", lca_query(5,3,4) );
-	return 0;
-}
