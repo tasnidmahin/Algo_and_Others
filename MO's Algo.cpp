@@ -142,10 +142,6 @@ int main() {
 	int currentL = 0, currentR = 0;
 	for(int i=0; i<m; i++) {
 		int L = q[i].L, R = q[i].R;
-		while(currentL < L) {
-			remove(currentL);
-			currentL++;
-		}
 		while(currentL > L) {
 			add(currentL-1);
 			currentL--;
@@ -153,6 +149,11 @@ int main() {
 		while(currentR <= R) {
 			add(currentR);
 			currentR++;
+		}
+
+		while(currentL < L) {
+			remove(currentL);
+			currentL++;
 		}
 		while(currentR > R+1) {
 			remove(currentR-1);
