@@ -53,3 +53,14 @@ int get_kth(int k, int l, int r, pnode nd)
 	if(nd->l->sum < k) return get_kth(k - nd->l->sum, mid + 1, r, nd->r);
 	else return get_kth(k, l, mid, nd->l);
 }
+
+int search(pnode a, pnode b, int l, int r, int k)
+{
+  if(l == r) return l;
+  int cnt = a -> l -> sum - b -> l -> sum;
+
+  int mid = l + r >> 1;
+  if(cnt >= k) // Our answer in in left subtree
+    return search(a -> l, b -> l, l, mid, k);
+  else return search(a -> r, b -> r, mid+1, r, k - cnt);
+}
