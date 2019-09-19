@@ -2,10 +2,14 @@
 #include <ext/pb_ds/assoc_container.hpp>
 #include <ext/pb_ds/tree_policy.hpp>
 #include <ext/pb_ds/trie_policy.hpp>
+#include <ext/rope> //header with rope
+#include <bits/stdtr1c++.h>//for rope
+
 
 
 using namespace __gnu_pbds;
 using namespace std;
+using namespace __gnu_cxx; //namespace with rope and some additional stuff
 typedef long long ll;
 typedef unsigned long long ull;
 
