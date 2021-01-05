@@ -1,4 +1,4 @@
-#include<bits/stdc++.h>
+#include <bits/stdc++.h>
 #include <ext/pb_ds/assoc_container.hpp>
 #include <ext/pb_ds/tree_policy.hpp>
 #include <ext/pb_ds/trie_policy.hpp>
@@ -28,7 +28,7 @@ typedef unsigned long long ull;
 #define     sl(n)                   scanf("%lld",&n)
 #define     sll(a,b)                scanf("%lld %lld",&a,&b)
 #define     slll(a,b,c)             scanf("%lld %lld %lld",&a,&b,&c)
-#define     pf(n)                   cout << n << '\n';
+#define     pf(n)                   cout << n << endl;
 #define     pl(n)                   printf("%I64d\n",n)
 #define     ARPR(ara,s,e)           for(int i=s;i<=e;i++){  cout << ara[i]  << " "; }   cout << '\n';
 #define     bug(s)                  cerr << s << '\n';
@@ -89,15 +89,15 @@ int Set(int n,int pos){ return n = n | (1<<pos);}
 int reset(int n, int pos){ return n = n & ~(1<<pos);}
 bool check(int n, int pos){ return (bool) (n & (1<<pos));}
 
-int ara[50000007];
-string s;
-char ch;
-map<int ,int> mp;
-vector<int>vc;
 
 int main()
 {
     int test;
-    ll n,sum=0,m,ans=0,v,k;
     return 0;
 }
+
+/*
+Before Submit
+1. int long long problem
+
+*/

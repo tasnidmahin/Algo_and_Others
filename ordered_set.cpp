@@ -1,4 +1,4 @@
-Treap:
+//Treap:
 // C++ program to demonstrate the
 // ordered set in GNU C++
 #include <iostream>
@@ -53,7 +53,7 @@ int main()
     cout << o_set.order_of_key(4)          << endl;
     return 0;
 }
-
+/*
 #include <bits/stdc++.h>
 #include <ext/pb_ds/assoc_container.hpp>
 #include <ext/pb_ds/trie_policy.hpp>
@@ -85,3 +85,4 @@ main()
     }
 
 }
+*/
